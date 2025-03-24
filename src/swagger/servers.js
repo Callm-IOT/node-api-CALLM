@@ -4,7 +4,7 @@ export const SERVERS = [
         description: "Local Server"
     },
     {
-        url: "http://url-especial-deploy-xd:9222",
+        url: "https://node-api-callm.vercel.app/",
         description: "Development environment"
     }
 ]

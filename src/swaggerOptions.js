@@ -6,18 +6,22 @@ import SCHEMAS from "./swagger/schemas/index.js"
 import { SECURITY } from "./swagger/security.js"
 
 const swaggerOptions = {
-    swaggerDefinition: {
-        openapi: `3.0.0`,
+    definition: { 
+        openapi: "3.0.0",
         info: INFO,
         servers: SERVERS,
         components: {
             schemas: SCHEMAS,
             securitySchemes: SECURITY
-        }
+        },
+        security: [
+            {
+                bearerAuth: []
+            }
+        ]
     },
     apis: ["./src/routes/v1/*.js"]
 }
-
 const swaggerSpec = swaggerJSDoc(swaggerOptions)
 
 export {

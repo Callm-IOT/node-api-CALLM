@@ -5,7 +5,7 @@ import { config } from "../config/config.js";
 
 const SALT_WORK_FACTOR = Number(config.saltWorkFactor ?? 10)
 
-const userRole = {
+export const userRole = {
     Admin: "Admin",
     User: "User"
 };

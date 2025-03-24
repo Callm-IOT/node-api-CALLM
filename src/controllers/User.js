@@ -1,6 +1,6 @@
 import { isPasswordStrong } from "../lib/isPasswordStrong.js";
 import { errorHandler } from "../middlewares/Error.js";
-import User from "../models/User.js";
+import User, { userRole } from "../models/User.js";
 
 export const createUser = async (req, res) => {
     try {
@@ -69,15 +69,15 @@ export const updateUser = async (req, res) => {
 };
 
 export const getAllMyUsers = async (req, res) => {
-    const { userId } = req.params;
-  
-    if (req.user.role !== "Admin") {
+    const user = res.locals.user; 
+    
+    if (user.role !== "Admin") {
       return res.status(403).json({ message: "No autorizado, solo admin puede acceder." });
     }
   
     try {
       // Busca todos los usuarios que coincidan con el userId proporcionado
-      const users = await User.find({ userId });
+      const users = await User.find({ userId: user.id, enabled: true });
       
       // Si no se encuentra ningún usuario
       if (!users.length) {
@@ -89,8 +89,33 @@ export const getAllMyUsers = async (req, res) => {
         errorHandler(error, req, res)
     }
   };
-
-
-  export const updatePassword = async (req, res) => {
+  export const createHomeUsers = async (req, res) => {
+    try {
+        const user = res.locals.user; 
+        
+        const { name, lastName, dob, phone, email, username, password } = req.body;
+        
+        const newUser = new User({
+            name,
+            lastName,
+            dob,
+            password,
+            phone,
+            email,
+            username,
+            userId: user.id,
+            role: userRole.User,
+        })
     
-  }
+        await newUser.save()  // No olvides guardar el usuario si es necesario
+    
+        res.status(201).json({
+            message: "Usuario creado correctamente"
+        })
+    } catch (error) {
+        errorHandler(error, req, res)
+    }
+}
+export const updatePassword = async (req, res) => {
+    
+}

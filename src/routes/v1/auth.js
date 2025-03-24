@@ -29,11 +29,11 @@ const authRouter = new Router();
  *             properties:
  *               username:
  *                 type: string
- *                 example: "user123"
+ *                 example: "antcodernez"
  *               password:
  *                 type: string
  *                 format: password
- *                 example: "SecurePassword123!"
+ *                 example: "P@titoLoco7"
  *     responses:
  *       200:
  *         description: Successful login

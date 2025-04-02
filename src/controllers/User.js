@@ -88,8 +88,9 @@ export const getAllMyUsers = async (req, res) => {
     } catch (error) {
         errorHandler(error, req, res)
     }
-  };
-  export const createHomeUsers = async (req, res) => {
+};
+
+export const createHomeUsers = async (req, res) => {
     try {
         const user = res.locals.user; 
         
@@ -115,7 +116,12 @@ export const getAllMyUsers = async (req, res) => {
     } catch (error) {
         errorHandler(error, req, res)
     }
-}
+};
+
 export const updatePassword = async (req, res) => {
     
-}
+};
+
+export const updateMyOwnUsers = async (req, res) => {
+    
+} 

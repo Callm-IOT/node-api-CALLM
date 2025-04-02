@@ -3,8 +3,6 @@ import bcrypt from "bcrypt";
 
 import { config } from "../config/config.js";
 
-const SALT_WORK_FACTOR = Number(config.saltWorkFactor ?? 10)
-
 export const userRole = {
     Admin: "Admin",
     User: "User"

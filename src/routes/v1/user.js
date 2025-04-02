@@ -1,6 +1,8 @@
 import { Router } from "express";
+
 import { createUser, getUserById, updateUser, getAllMyUsers, createHomeUsers } from "../../controllers/User.js";
 import { verifyToken } from "../../middlewares/Token.js";
+import { verifyAdminUser } from "../../middlewares/Acl.js";
 
 /**
  * @swagger
@@ -131,7 +133,7 @@ routerUser.post("/create", createUser);
  *       403:
  *         description: Invalid token
  */
-routerUser.post("/create-home-users", verifyToken , createHomeUsers);
+routerUser.post("/create-home-users", verifyToken, verifyAdminUser, createHomeUsers);
 
 /**
  * @swagger
@@ -175,7 +177,7 @@ routerUser.post("/create-home-users", verifyToken , createHomeUsers);
  *       500:
  *         description: Internal server error.
  */
-routerUser.get("/all-users/", verifyToken, getAllMyUsers);
+routerUser.get("/all-users/", verifyToken, verifyAdminUser, getAllMyUsers);
 
 /**
  * @swagger

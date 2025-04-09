@@ -29,7 +29,7 @@ const userSchema = new Schema({
         type: String,
         required: [true, "El número telefónico es requerido"],
         trim: true,
-        match: [/^\+[1-9]\d{1,14}$/, 'Por favor, introduce un número de teléfono válido']
+        match: [/^\d{10,15}$/, 'Por favor, introduce un número de teléfono válido']
     },
     email: {
         type: String,
@@ -48,9 +48,9 @@ const userSchema = new Schema({
         required: [true, 'La contraseña es requerida'],
         validate: {
             validator: function (password) {
-                return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+                return /^(?=.[A-Z])(?=.\d).{4,}$/.test(password);
             },
-            message: 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial.'
+            message: 'La contraseña debe tener al menos 1 letra mayúscula, 1 número y un mínimo de 4 caracteres.'
         }
     },
     role: {

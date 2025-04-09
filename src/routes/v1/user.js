@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { createUser, getUserById, updateUser, getAllMyUsers, createHomeUsers } from "../../controllers/User.js";
+import { createUser, getUserById, updateUser, getAllMyUsers, createHomeUsers, updatePassword } from "../../controllers/User.js";
 import { verifyToken } from "../../middlewares/Token.js";
 import { verifyAdminUser } from "../../middlewares/Acl.js";
 
@@ -181,6 +181,57 @@ routerUser.get("/all-users/", verifyToken, verifyAdminUser, getAllMyUsers);
 
 /**
  * @swagger
+ * /api/v1/users/update-password:
+ *   put:
+ *     summary: Actualizar la contraseña de un usuario autenticado
+ *     description: Permite a un usuario autenticado actualizar su contraseña. Se requiere autenticación.
+ *     tags:
+ *       - Users
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               password:
+ *                 type: string
+ *                 description: Nueva contraseña del usuario
+ *                 example: "NewPassword123!"
+ *     responses:
+ *       200:
+ *         description: Contraseña actualizada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   example: "643d8f..."
+ *                 name:
+ *                   type: string
+ *                   example: "John Doe"
+ *                 email:
+ *                   type: string
+ *                   example: "john@example.com"
+ *       400:
+ *         description: Datos inválidos o contraseña no proporcionada
+ *       401:
+ *         description: Token de acceso requerido
+ *       403:
+ *         description: Token inválido
+ *       404:
+ *         description: Usuario no encontrado
+ *       500:
+ *         description: Error interno del servidor
+ */
+routerUser.put("/update-password", verifyToken, updatePassword);
+
+/**
+ * @swagger
  * /api/v1/users/{id}:
  *   get:
  *     summary: Get a user by ID
@@ -198,7 +249,7 @@ routerUser.get("/all-users/", verifyToken, verifyAdminUser, getAllMyUsers);
  *       404:
  *         description: User not found
  */
-routerUser.get("/:id", getUserById);
+routerUser.get("/:id", verifyToken, getUserById);
 
 /**
  * @swagger
@@ -243,7 +294,7 @@ routerUser.get("/:id", getUserById);
  *       404:
  *         description: User not found
  */
-routerUser.put("/:id", updateUser);
+routerUser.put("/:id", verifyToken, updateUser);
 
 
 export { routerUser };

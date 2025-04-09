@@ -119,7 +119,26 @@ export const createHomeUsers = async (req, res) => {
 };
 
 export const updatePassword = async (req, res) => {
-    
+    try {
+        const { id } = res.locals.user; 
+        const { password } = req.body;
+
+
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: id, enabled: true },
+            { password },
+            { new: true }
+        )
+          
+        if (!updatedUser) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        res.status(200).json(updatedUser);
+
+    } catch (error) {
+        errorHandler(error, req, res);
+    }
 };
 
 export const updateMyOwnUsers = async (req, res) => {

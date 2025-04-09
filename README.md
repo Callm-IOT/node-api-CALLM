@@ -67,7 +67,7 @@ ESP32 --- API (Node.js) --- MongoDB
 | Integrante | GitHub | Rol | Observaciones |
 |------------|--------|-----|--------|
 | Daniel de Jesús Bravo Godinez | [@Daniel-Bravo](https://github.com/theIcedBlackTea) | Documentación | ✅ Revisado |
-| Yáred Amaury Romero Martínez	 | [@Yared-Amaury-Romero](https://github.com/AmauryRomero1285) | Administrador de IoT | ⛔ Pendiente |
+| Yáred Amaury Romero Martínez	 | [@Yared-Amaury-Romero](https://github.com/AmauryRomero1285) | Administrador de IoT | ✅ Revisado |
 | Josúe Atlai Martínez Otero	 | [@Josúe-Atlai-Martínez-Otero](https://github.com/Josue-Martinez-Otero) | Desarrollador Front-End | ✅ Revisado |
 | Jesús Antonio Estrada Jimenez		 | [@Jesús-Antonio-Estrada-Jimenez	](https://github.com/antcodernez) | Desarrollador Back-End | ✅ Revisado |
 

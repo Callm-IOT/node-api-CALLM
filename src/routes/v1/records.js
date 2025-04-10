@@ -29,7 +29,7 @@ const recordsRouter = Router();
 
 /**
  * @swagger
- * /records:
+ * /api/v1/records:
  *   post:
  *     summary: Crear un nuevo registro
  *     tags: [Records]
@@ -49,7 +49,7 @@ recordsRouter.post("/", createRecord);
 
 /**
  * @swagger
- * /records:
+ * /api/v1/records:
  *   get:
  *     summary: Obtener todos los registros
  *     tags: [Records]
@@ -63,7 +63,7 @@ recordsRouter.get("/", getAllRecords);
 
 /**
  * @swagger
- * /records/{id}:
+ * /api/v1/records/{id}:
  *   get:
  *     summary: Obtener un registro por ID
  *     tags: [Records]
@@ -86,7 +86,30 @@ recordsRouter.get("/:id", getRecordById);
 
 /**
  * @swagger
- * /records/{id}:
+ * /api/v1/records/{id}:
+ *   get:
+ *     summary: Obtener un registro por ID
+ *     tags: [Records]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del registro a obtener.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Registro encontrado.
+ *       404:
+ *         description: Registro no encontrado.
+ *       500:
+ *         description: Error al obtener el registro.
+ */
+recordsRouter.get("/:id", getRecordById);
+
+/**
+ * @swagger
+ * /api/v1/records/{id}:
  *   put:
  *     summary: Actualizar un registro por ID
  *     tags: [Records]
@@ -115,7 +138,7 @@ recordsRouter.put("/:id", updateRecord);
 
 /**
  * @swagger
- * /records/{id}:
+ * /api/v1/records/{id}:
  *   delete:
  *     summary: Eliminar un registro por ID
  *     tags: [Records]

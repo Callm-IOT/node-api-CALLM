@@ -1,4 +1,3 @@
-import { config } from '../config/config.js'
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../lib/token.js'
 import { errorHandler } from '../middlewares/Error.js'
 import User from '../models/User.js'

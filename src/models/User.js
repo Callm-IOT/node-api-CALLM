@@ -40,18 +40,13 @@ const userSchema = new Schema({
     },
     username: {
         type: String,
+        unique: true,
         required: [true, "El nombre de usuario es requerido"],
         minlength: [5, "El nombre de usuario debe tener al menos 5 caracteres"]
     },
     password: {
         type: String,
         required: [true, 'La contraseña es requerida'],
-        validate: {
-            validator: function (password) {
-                return /^(?=.[A-Z])(?=.\d).{4,}$/.test(password);
-            },
-            message: 'La contraseña debe tener al menos 1 letra mayúscula, 1 número y un mínimo de 4 caracteres.'
-        }
     },
     role: {
         type: String,
@@ -67,7 +62,7 @@ const userSchema = new Schema({
     },
     imageUrl: {
         type: String,
-        default: "http://imagen.com/img.png"
+        default: "https://imgs.search.brave.com/oa78EHs9PgwVEO6XrLIXpGBXSIFNJzLWgQSgzwhVxMk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzJjL2Ji/LzBlLzJjYmIwZWU2/YzFjNTViMTA0MTY0/MjEyOGM5MDJkYWRk/LmpwZw"
     },
     userId: {
         type: String,

@@ -123,7 +123,6 @@ notificationsRouter.get("/", verifyToken, verifyAdminUser, getAllUserNotificatio
  */
 notificationsRouter.post("/create", upload.single('imagen'), createNotification);
 
-
 /**
  * @swagger
  * /api/v1/notifications/read/{id}:

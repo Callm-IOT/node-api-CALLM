@@ -6,11 +6,6 @@ export const createUser = async (req, res) => {
     try {
         const {name, email, password, lastName, phone, role, dob, username } = req.body;
     
-        if (!isPasswordStrong(password)) {
-            res.status(400).json({ message: "La contraseña no cunple con los requisitos de seguridad necesarios" })
-            return
-        }
-    
         const newUser = new User({
             name,
             lastName,
